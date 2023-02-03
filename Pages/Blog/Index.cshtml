@@ -7,16 +7,17 @@
 }
 @{
     // xây dựng Func phát sinh Url từ page ./Index
-    Func<int?, string> generateUrl = (int? _pagenumber) =>
+    //callback
+    @* Func<int?, string> generateUrl = (int? _pagenumber) =>
     {
-        return Url.Page("./User", new { pageNumber = _pagenumber });
-    };
+        return Url.Page("./trang", new { pageNumber = _pagenumber });
+    }; *@
 
-    var datapaging = new
+    var pagingthamchieu = new PagingModel
     {
-        currentPage = 2, // trang hiện tại
-        countPages = 20, // tổng số trang
-        generateUrl = generateUrl
+        currentpage =  Model.currentPage, // trang hiện tại
+        countpages =  Model.countPages, // tổng số trang
+        generateUrl = (int ? p)=> Url.Page("/Blog/Index", new { p = p })
     };
 
 }
@@ -71,4 +72,4 @@
     </tbody>
 </table>
 
-<partial name="_Paging" model="@datapaging" />
+<partial name="_Paging" model="@pagingthamchieu" />

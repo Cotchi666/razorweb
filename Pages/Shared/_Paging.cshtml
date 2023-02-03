@@ -4,11 +4,12 @@
       - countPages:int - tổng số trang
       - generateUrl:delegate Func<int?, string> trả về URL tương ứng với trang p (1,2,3 ...)
 *@
-
-@model dynamic
+@* nhan model tu cac trang truyen xuong *@
+@* co the hieub no nhu mot dynamic property *@
+@model PagingModel
 @{
-    int currentPage  = Model.currentPage;
-    int countPages   = Model.countPages;
+    int currentPage  = Model.currentpage;
+    int countPages   = Model.countpages;
     var generateUrl  = Model.generateUrl;
     
     if (currentPage > countPages) 
