@@ -17,14 +17,26 @@ namespace razorwebef.Pages.Blog
             _context = context;
         }
 
-        public IList<Article> Article { get;set; } = default!;
+        public IList<Article> Article { get; set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
         public async Task OnGetAsync()
         {
-            if (_context.Article != null)
+            // if (_context.Article != null)
+            // {
+            //     Article = await _context.Article.ToListAsync();
+            // }
+            // Truy vấn lấy các Article
+            var articles = from a in _context.Article select a;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Article = await _context.Article.ToListAsync();
+                Console.WriteLine(SearchString);
+                // Truy vấn lọc các Article mà tiêu đề chứa chuỗi tìm kiếm
+                articles = articles.Where(article => article.Title.Contains(SearchString));
             }
+            // Đọc (nạp) Article
+            Article = await articles.ToListAsync();
         }
     }
 }
