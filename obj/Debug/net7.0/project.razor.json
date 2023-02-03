@@ -16560,6 +16560,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/chie/Documents/c#/razorwebef/Pages/Shared/_Paging.cshtml",
+      "TargetPath": "Pages\\Shared\\_Paging.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/chie/Documents/c#/razorwebef/Pages/Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"

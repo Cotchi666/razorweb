@@ -23,15 +23,15 @@ namespace razorwebef.Pages.Blog
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Article == null)
+            if (id == null )
             {
-                return NotFound();
+                return Content("Không thấy bài viết");
             }
 
-            var article =  await _context.Article.FirstOrDefaultAsync(m => m.ID == id);
+            var article = await _context.Article.FirstOrDefaultAsync(m => m.ID == id);
             if (article == null)
             {
-                return NotFound();
+               return Content("Không thấy bài viết");
             }
             Article = article;
             return Page();
@@ -56,7 +56,7 @@ namespace razorwebef.Pages.Blog
             {
                 if (!ArticleExists(Article.ID))
                 {
-                    return NotFound();
+               return Content("Không thấy bài viết");
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace razorwebef.Pages.Blog
 
         private bool ArticleExists(int id)
         {
-          return (_context.Article?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Article?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

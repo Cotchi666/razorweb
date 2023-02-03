@@ -2,32 +2,48 @@
 @model razorwebef.Pages.Blog.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách bài viết";
+    var i = 0;
 }
+@{
+    // xây dựng Func phát sinh Url từ page ./Index
+    Func<int?, string> generateUrl = (int? _pagenumber) =>
+    {
+        return Url.Page("./User", new { pageNumber = _pagenumber });
+    };
 
-<h1>Index</h1>
+    var datapaging = new
+    {
+        currentPage = 2, // trang hiện tại
+        countPages = 20, // tổng số trang
+        generateUrl = generateUrl
+    };
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+}
+<h1>Danh sách bài viết</h1>
 <form method="get" asp-page="./Index">
     <p>
         Title: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Tìm" />
     </p>
 </form>
+<p>
+    <a asp-page="Create" class="btn btn-primary">Tạo bài viết mới </a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
+            <th>STT</th>
             <th>
                 @Html.DisplayNameFor(model => model.Article[0].Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Article[0].PublishDate)
             </th>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.Article[0].Content)
-            </th>
+                </th> *@
             <th></th>
         </tr>
     </thead>
@@ -35,21 +51,24 @@
         @foreach (var item in Model.Article)
         {
             <tr>
+                <td>@(++i)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PublishDate)
                 </td>
-                <td>
+                @* <td>
                     @Html.DisplayFor(modelItem => item.Content)
-                </td>
+                    </td> *@
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Chỉnh sửa</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Xem</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Xoá</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<partial name="_Paging" model="@datapaging" />

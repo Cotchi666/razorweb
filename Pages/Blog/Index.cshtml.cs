@@ -23,20 +23,21 @@ namespace razorwebef.Pages.Blog
         public string SearchString { get; set; }
         public async Task OnGetAsync()
         {
-            // if (_context.Article != null)
-            // {
-            //     Article = await _context.Article.ToListAsync();
-            // }
+
             // Truy vấn lấy các Article
-            var articles = from a in _context.Article select a;
+            var articles = from a in _context.Article orderby a.PublishDate descending select a;
             if (!string.IsNullOrEmpty(SearchString))
             {
                 Console.WriteLine(SearchString);
                 // Truy vấn lọc các Article mà tiêu đề chứa chuỗi tìm kiếm
-                articles = articles.Where(article => article.Title.Contains(SearchString));
+                Article = articles.Where(article => article.Title.Contains(SearchString)).ToList();
+            }
+            else
+            {
+                Article = await articles.ToListAsync();
             }
             // Đọc (nạp) Article
-            Article = await articles.ToListAsync();
+
         }
     }
 }

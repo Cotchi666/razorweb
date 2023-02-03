@@ -21,7 +21,7 @@ namespace razorwebef.Pages.Blog
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Article == null)
+            if (id == null )
             {
                 return NotFound();
             }
