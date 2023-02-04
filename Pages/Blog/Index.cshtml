@@ -9,15 +9,15 @@
     // xây dựng Func phát sinh Url từ page ./Index
     //callback
     @* Func<int?, string> generateUrl = (int? _pagenumber) =>
-    {
+        {
         return Url.Page("./trang", new { pageNumber = _pagenumber });
-    }; *@
+        }; *@
 
     var pagingthamchieu = new PagingModel
     {
-        currentpage =  Model.currentPage, // trang hiện tại
-        countpages =  Model.countPages, // tổng số trang
-        generateUrl = (int ? p)=> Url.Page("/Blog/Index", new { p = p })
+        currentpage = Model.currentPage, // trang hiện tại
+        countpages = Model.countPages, // tổng số trang
+        generateUrl = (int? pdelegate) => Url.Page("/Blog/Index", new { p = pdelegate })
     };
 
 }

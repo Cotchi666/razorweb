@@ -7,9 +7,10 @@ public static class InsertTestArticle
             if (context.Article.Any())
             {
                 // Đã có dữ liệu
-                return;
+                System.Console.WriteLine("vao check data");
+                return;// "return void" means end of the methods which covers it
             }
-
+            
             context.AddRange(new Article[] {
                    new Article() {
                        Title = "Giới thiệu C# và viết chương trình CS đầu tiên",
@@ -49,7 +50,66 @@ public static class InsertTestArticle
                        Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
                                    .điều hướng vòng lặp continue, break"
                    },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   }, new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   }, new Article() {
+                       Title = "Vòng lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, break"
+                   },
+                    new Article() {
+                       Title = "sad lặp trong trong C# for do while và câu lệnh break continue",
+                       PublishDate = DateTime.Parse("5-2-2020"),
+                       Content = @"Tạo các vòng lặp for, while, do while trong C# và sử dụng câu lệnh
+                                   .điều hướng vòng lặp continue, breakasd"
+                   },
                });
+           
             context.SaveChanges();
         }
     }
