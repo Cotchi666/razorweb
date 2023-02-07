@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 
 namespace razorwebef.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
