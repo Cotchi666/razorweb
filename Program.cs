@@ -24,13 +24,12 @@ void ConfigureService()
         var connectionString = builder.Configuration.GetConnectionString("ArticleContext");
         options.UseSqlServer(connectionString);
     });
-    // builder.Services.AddIdentity<AppUser, IdentityRole>()
-    //           .AddEntityFrameworkStores<ArticleContext>()
-    //           .AddDefaultTokenProviders();
+    builder.Services.AddIdentity<AppUser, IdentityRole>()
+              .AddEntityFrameworkStores<ArticleContext>()
+              .AddDefaultTokenProviders();
 
-    builder.Services.AddDefaultIdentity<AppUser>()
-                   .AddEntityFrameworkStores<ArticleContext>()
-                   .AddDefaultTokenProviders();
+    // builder.Services.AddDefaultIdentity<AppUser>()
+    //                .AddEntityFrameworkStores<ArticleContext>();
     builder.Services.Configure<IdentityOptions>(options =>
     {
         // Thiết lập về Password
@@ -59,12 +58,12 @@ void ConfigureService()
 
     });
 
-    // builder.Services.ConfigureApplicationCookie(options =>
-    // {
-    //     options.LoginPath = "/login/";
-    //     options.LogoutPath = "/logout/";
-    //     options.AccessDeniedPath = "/khongduoctruycap.html";
-    // });
+    builder.Services.ConfigureApplicationCookie(options =>
+    {
+        options.LoginPath = "/login/";
+        options.LogoutPath = "/logout/";
+        options.AccessDeniedPath = "/khongduoctruycap.html";
+    });
 
 }
 var app = builder.Build();
