@@ -1,11 +1,26 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class ArticleContext : DbContext
+public class ArticleContext : IdentityDbContext<AppUser>
+
+{
+    public ArticleContext(DbContextOptions<ArticleContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        public ArticleContext(DbContextOptions<ArticleContext> options) : base(options)
+
+        base.OnModelCreating(builder);
+        // Bỏ tiền tố AspNet của các bảng: mặc định các bảng trong IdentityDbContext có
+        // tên với tiền tố AspNet như: AspNetUserRoles, AspNetUser ...
+        // Đoạn mã sau chạy khi khởi tạo DbContext, tạo database sẽ loại bỏ tiền tố đó
+        foreach (var entityType in builder.Model.GetEntityTypes())
         {
-            // Phương thức khởi tạo này chứa options để kết nối đến MS SQL Server
-            // Thực hiện điều này khi Inject trong dịch vụ hệ thống
+            var tableName = entityType.GetTableName();
+            if (tableName.StartsWith("AspNet"))
+            {
+                entityType.SetTableName(tableName.Substring(6));
+            }
         }
-        public DbSet<Article> Article {set; get;}
     }
+    public DbSet<Article> Article { set; get; }
+}

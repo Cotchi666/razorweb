@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace razorwebef.Pages.Blog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ArticleContext _context;
@@ -17,7 +19,7 @@ namespace razorwebef.Pages.Blog
             _context = context;
         }
 
-        public IList<Article> Article { get; set; } = default!;
+        public IList<Article> Article { get; set; } 
 
         public const int ITEMS_PER_PAGE = 1;
         // cho phep lay data tu parameter voi tham so la "p"

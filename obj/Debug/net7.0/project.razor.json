@@ -16575,6 +16575,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/chie/Documents/c#/razorwebef/Areas/Identity/Pages/_ViewStart.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/chie/Documents/c#/razorwebef/Pages/Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"
@@ -16602,6 +16607,11 @@
     {
       "FilePath": "/Users/chie/Documents/c#/razorwebef/Pages/Blog/Edit.cshtml",
       "TargetPath": "Pages\\Blog\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/chie/Documents/c#/razorwebef/Pages/Shared/_LoginPartial.cshtml",
+      "TargetPath": "Pages\\Shared\\_LoginPartial.cshtml",
       "FileKind": "mvc"
     },
     {
