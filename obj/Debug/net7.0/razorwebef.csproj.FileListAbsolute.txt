@@ -293,3 +293,6 @@
 /Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
 /Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
 /Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/MailKit.dll
+/Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/MimeKit.dll
+/Users/chie/Documents/c#/razorwebef/bin/Debug/net7.0/BouncyCastle.Crypto.dll

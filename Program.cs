@@ -1,6 +1,8 @@
 using System.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using razorwebef.Services.Mail;
+using  Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureService();
@@ -10,6 +12,11 @@ ConfigureService();
 //     }
 void ConfigureService()
 {
+    builder.Services.AddOptions();
+    var emailSetting = builder.Configuration.GetSection("MailSettings");
+    builder.Services.Configure<MailSettings>(emailSetting);
+    builder.Services.AddTransient<IEmailSender, SendMailService>();
+
     builder.Services.AddRazorPages();
 
     builder.Services.AddDbContext<ArticleContext>(options =>
@@ -21,9 +28,9 @@ void ConfigureService()
     //           .AddEntityFrameworkStores<ArticleContext>()
     //           .AddDefaultTokenProviders();
 
-     builder.Services.AddDefaultIdentity<AppUser>()
-                    .AddEntityFrameworkStores<ArticleContext>()
-                    .AddDefaultTokenProviders();
+    builder.Services.AddDefaultIdentity<AppUser>()
+                   .AddEntityFrameworkStores<ArticleContext>()
+                   .AddDefaultTokenProviders();
     builder.Services.Configure<IdentityOptions>(options =>
     {
         // Thiết lập về Password
