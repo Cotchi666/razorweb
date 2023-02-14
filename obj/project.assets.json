@@ -12390,19 +12390,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/chie/.nuget/packages/": {}
+    "/Users/chien/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chie/Documents/c#/razorwebef/razorwebef.csproj",
+      "projectUniqueName": "/Users/chien/Documents/clone/razorweb/razorwebef.csproj",
       "projectName": "razorwebef",
-      "projectPath": "/Users/chie/Documents/c#/razorwebef/razorwebef.csproj",
-      "packagesPath": "/Users/chie/.nuget/packages/",
-      "outputPath": "/Users/chie/Documents/c#/razorwebef/obj/",
+      "projectPath": "/Users/chien/Documents/clone/razorweb/razorwebef.csproj",
+      "packagesPath": "/Users/chien/.nuget/packages/",
+      "outputPath": "/Users/chien/Documents/clone/razorweb/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/chie/.nuget/NuGet/NuGet.Config"
+        "/Users/chien/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -12536,7 +12536,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }
