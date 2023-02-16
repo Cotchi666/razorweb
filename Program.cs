@@ -2,7 +2,7 @@ using System.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using razorwebef.Services.Mail;
-using  Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureService();
@@ -54,7 +54,13 @@ void ConfigureService()
         options.SignIn.RequireConfirmedAccount = false;
 
     });
-
+    builder.Services.AddAuthentication().AddGoogle((option) =>
+       {
+           IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+           option.ClientId = googleAuthNSection["ClientId"];
+           option.ClientSecret = googleAuthNSection["ClientSecret"];
+           option.CallbackPath = "/google-login-asp-netcore";
+       });
     builder.Services.ConfigureApplicationCookie(options =>
     {
         options.LoginPath = "/login/";
@@ -76,6 +82,7 @@ using (var scope = app.Services.CreateScope())
 {
     InsertTestArticle.Initialize(scope.ServiceProvider);
 }
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

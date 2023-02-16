@@ -18730,6 +18730,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/chien/Documents/clone/razorweb/Areas/Identity/Pages/Account/Manage/_ViewStart.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/chien/Documents/clone/razorweb/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
       "FileKind": "mvc"

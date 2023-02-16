@@ -85,7 +85,7 @@ namespace razorwebef.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
         }
-        
+
         public IActionResult OnGet() => RedirectToPage("./Login");
 
         public IActionResult OnPost(string provider, string returnUrl = null)
@@ -98,6 +98,7 @@ namespace razorwebef.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
+            // return Content("Ok google");
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
@@ -151,8 +152,67 @@ namespace razorwebef.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                // input email 
+                var registeredUser = await _userManager.FindByEmailAsync(Input.Email);
+                // external email
+                string externalEmail = null;
+                //
+                AppUser externalEmailUser = null;
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                {
+                    externalEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
+                }
+                if(externalEmail != null) externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
+                //________________________________
+                if (registeredUser != null && externalEmailUser != null)
+                {
+                    if (registeredUser.Id == externalEmailUser.Id)
+                    {
+                        var resultLink = await _userManager.AddLoginAsync(registeredUser, info);
+                        if (resultLink.Succeeded)
+                        {
+                            await _signInManager.SignInAsync(registeredUser, isPersistent: false);
+                            return LocalRedirect(returnUrl);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Khong the lien ket");
+                        return Page();
+                    }
+                }
+                //________________________________
+                if ((externalEmailUser != null) && (registeredUser != null))
+                {
+                    ModelState.AddModelError(string.Empty, "NO support for creating a new user(has no match email)");
+                    return Page();
+                }
+                //________________________________
+                if ((externalEmailUser == null) && (externalEmail == Input.Email))
+                {
+                    var newUser = new AppUser()
+                    {
+                        UserName = externalEmail,
+                        Email = externalEmail
+                    };
+                    var resultNewUser = await _userManager.CreateAsync(newUser);
+                    if (resultNewUser.Succeeded)
+                    {
+                        await _userManager.AddLoginAsync(newUser, info);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                        await _userManager.ConfirmEmailAsync(newUser, code);
+                        await _signInManager.SignInAsync(newUser, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Khong the lien ket");
+                        return Page();
 
+                    }
+                }
+                //________________________________
+                var user = CreateUser();
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
@@ -188,7 +248,7 @@ namespace razorwebef.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError(string.Empty, "error.Description");
                 }
             }
 
