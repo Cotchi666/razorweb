@@ -162,7 +162,7 @@ namespace razorwebef.Areas.Identity.Pages.Account
                 {
                     externalEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
                 }
-                if(externalEmail != null) externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
+                if (externalEmail != null) externalEmailUser = await _userManager.FindByEmailAsync(externalEmail);
                 //________________________________
                 if (registeredUser != null && externalEmailUser != null)
                 {
@@ -182,13 +182,13 @@ namespace razorwebef.Areas.Identity.Pages.Account
                     }
                 }
                 //________________________________
-                if ((externalEmailUser != null) && (registeredUser != null))
+                if ((registeredUser == null) && (externalEmailUser != null))
                 {
                     ModelState.AddModelError(string.Empty, "NO support for creating a new user(has no match email)");
                     return Page();
                 }
                 //________________________________
-                if ((externalEmailUser == null) && (externalEmail == Input.Email))
+                if ((externalEmail == Input.Email) && (externalEmailUser == null))
                 {
                     var newUser = new AppUser()
                     {
