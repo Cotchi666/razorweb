@@ -6,10 +6,7 @@ using  Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigureService();
-// Add services to the container.
-//   using (var scope = builder.Services.CreateScope()) {
-//         InsertTestArticle.InsertArticle(scope.ServiceProvider);
-//     }
+
 void ConfigureService()
 {
     builder.Services.AddOptions();
@@ -54,7 +51,7 @@ void ConfigureService()
         // Cấu hình đăng nhập.
         options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
         options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
-        options.SignIn.RequireConfirmedAccount = true;
+        options.SignIn.RequireConfirmedAccount = false;
 
     });
 

@@ -17,9 +17,10 @@ namespace razorwebef.Areas.Identity.Pages.Account
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
-
-        public ConfirmEmailModel(UserManager<AppUser> userManager)
+        private readonly SignInManager<AppUser> _signInManager;
+        public ConfirmEmailModel(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
+            _signInManager = signInManager;
             _userManager = userManager;
         }
 
@@ -45,8 +46,18 @@ namespace razorwebef.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            if(result.Succeeded){}
-            return Page();
+            if (result.Succeeded)
+            {
+                _signInManager.SignInAsync(user, false);
+                return RedirectToPage("/Index");
+
+            }
+            else
+
+            {
+                return Content("Something went wrong");
+            }
+            // return Page();
         }
     }
 }
