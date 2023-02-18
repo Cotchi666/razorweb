@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace razorwebef.Pages.Blog
 {
@@ -36,8 +37,13 @@ namespace razorwebef.Pages.Blog
 
             _context.Article.Add(Article);
             await _context.SaveChangesAsync();
-
+            isDoing(_context.Users);
             return RedirectToPage("./Index");
+        }
+
+        private void isDoing(DbSet<AppUser> users)
+        {
+            throw new NotImplementedException();
         }
     }
 }
